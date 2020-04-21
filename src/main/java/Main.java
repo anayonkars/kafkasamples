@@ -1,3 +1,6 @@
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.Properties;
@@ -15,5 +18,16 @@ public class Main {
         properties.put(BOOTSTRAP_SERVERS_CONFIG, KAFKA_BROKERS);
         properties.put(KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         properties.put(VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        KafkaProducer producer = new KafkaProducer(properties);
+        try {
+            ProducerRecord myMessage = new ProducerRecord("mytopic", "myMessage");
+            producer.send(myMessage);
+            System.out.println("Sent " + myMessage);
+            ProducerRecord myMessage2 = new ProducerRecord("mytopic", 0, System.currentTimeMillis(), "mykey", "myValue");
+            producer.send(myMessage2);
+            System.out.println("Sent " + myMessage2);
+        } finally {
+            producer.close();
+        }
     }
 }
