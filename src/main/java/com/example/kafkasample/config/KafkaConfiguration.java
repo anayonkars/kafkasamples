@@ -38,7 +38,7 @@ public class KafkaConfiguration {
         consumerProperties.put(KEY_DESERIALIZER_CLASS_CONFIG, stringDeserializerClassName);
         consumerProperties.put(VALUE_DESERIALIZER_CLASS_CONFIG, stringDeserializerClassName);
         consumerProperties.put(GROUP_ID_CONFIG, consumerGroup);
-        consumerProperties.put(MAX_POLL_RECORDS_CONFIG, 10);
+        consumerProperties.put(MAX_POLL_RECORDS_CONFIG, 1);
         consumerProperties.put(ENABLE_AUTO_COMMIT_CONFIG, "false");
         consumerProperties.put(AUTO_OFFSET_RESET_CONFIG, "earliest");
         return new KafkaConsumer<Long, String>(consumerProperties);
