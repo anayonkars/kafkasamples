@@ -8,17 +8,15 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PreDestroy;
 import java.time.Duration;
-import java.util.Collections;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+import static java.time.Duration.ofSeconds;
 import static java.util.Collections.singletonList;
-import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
@@ -48,7 +46,7 @@ public class KafkaController {
         RecordMetadata recordMetadata;
         try {
             recordMetadata = recordMetadataFuture.get();
-            return recordMetadata.toString();
+            return recordMetadata.topic() + ":" + produceMessageRequest.getMessage();
         } catch (InterruptedException e) {
             return e.getMessage();
         } catch (ExecutionException e) {
@@ -60,7 +58,7 @@ public class KafkaController {
             produces = {APPLICATION_JSON_VALUE})
     public String consume(@PathVariable String topic) {
         kafkaConsumer.subscribe(singletonList(topic));
-        ConsumerRecords<Long, String> consumerRecords = kafkaConsumer.poll(Duration.ofSeconds(1));
+        ConsumerRecords<Long, String> consumerRecords = kafkaConsumer.poll(ofSeconds(1));
         StringBuilder sb = new StringBuilder();
         consumerRecords.forEach(record -> {
             sb.append(record.toString());

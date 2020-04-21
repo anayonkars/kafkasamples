@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "9fa0351c-03ec-4079-842b-291930205dca",
+		"name": "kafkasample",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8800/kafka/produce",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"topic\": \"topic1\",\n\t\"message\": \"1111\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8800/kafka/produce",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8800",
+					"path": [
+						"kafka",
+						"produce"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8800/kafka/consume/topic1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8800/kafka/consume/topic1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8800",
+					"path": [
+						"kafka",
+						"consume",
+						"topic1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

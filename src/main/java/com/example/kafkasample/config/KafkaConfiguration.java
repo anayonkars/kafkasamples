@@ -17,6 +17,11 @@ import static org.apache.kafka.clients.producer.ProducerConfig.VALUE_SERIALIZER_
 
 @Configuration
 public class KafkaConfiguration {
+
+    public static final int ONE = 1;
+    public static final String FALSE = "false";
+    public static final String EARLIEST = "earliest";
+
     @Bean
     @Qualifier("kafkaProducer")
     public KafkaProducer kafkaProducer(@Value("${kafka.brokers}") String kafka_brokers) {
@@ -38,9 +43,9 @@ public class KafkaConfiguration {
         consumerProperties.put(KEY_DESERIALIZER_CLASS_CONFIG, stringDeserializerClassName);
         consumerProperties.put(VALUE_DESERIALIZER_CLASS_CONFIG, stringDeserializerClassName);
         consumerProperties.put(GROUP_ID_CONFIG, consumerGroup);
-        consumerProperties.put(MAX_POLL_RECORDS_CONFIG, 1);
-        consumerProperties.put(ENABLE_AUTO_COMMIT_CONFIG, "false");
-        consumerProperties.put(AUTO_OFFSET_RESET_CONFIG, "earliest");
+        consumerProperties.put(MAX_POLL_RECORDS_CONFIG, ONE);
+        consumerProperties.put(ENABLE_AUTO_COMMIT_CONFIG, FALSE);
+        consumerProperties.put(AUTO_OFFSET_RESET_CONFIG, EARLIEST);
         return new KafkaConsumer<Long, String>(consumerProperties);
     }
 }
