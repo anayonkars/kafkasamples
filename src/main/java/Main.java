@@ -38,10 +38,12 @@ public class Main {
             ProducerRecord myMessage = new ProducerRecord(KAFKA_TOPIC, "myMessage");
             producer.send(myMessage);
             System.out.println("Sent " + myMessage);
-            /*ProducerRecord myMessage2 = new ProducerRecord(KAFKA_TOPIC, 0, System.currentTimeMillis(), "mykey", "myValue");
-            producer.send(myMessage2);*/
             ProducerRecord myMessage2 = new ProducerRecord(KAFKA_TOPIC, "myMessage2");
+            producer.send(myMessage2);
             System.out.println("Sent " + myMessage2);
+            ProducerRecord myMessage3 = new ProducerRecord(KAFKA_TOPIC, 0, System.currentTimeMillis(), "mykey", "myValue");
+            producer.send(myMessage3);
+            System.out.println("Sent " + myMessage3);
             ConsumerRecords<Long, String> consumerRecords = consumer.poll(Duration.ofSeconds(1));
             consumerRecords.forEach(record -> {
                 System.out.println(record.toString());
