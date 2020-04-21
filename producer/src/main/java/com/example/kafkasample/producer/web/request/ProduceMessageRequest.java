@@ -1,4 +1,4 @@
-package com.example.kafkasample.web.request;
+package com.example.kafkasample.producer.web.request;
 
 public class ProduceMessageRequest {
     private String topic;

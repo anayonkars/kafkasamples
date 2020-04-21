@@ -6,13 +6,13 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8800/kafka/produce",
+			"name": "http://localhost:9900/kafka/produce",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"topic\": \"topic1\",\n\t\"message\": \"1111\"\n}",
+					"raw": "{\n\t\"topic\": \"topic\",\n\t\"message\": \"hello\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -20,12 +20,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8800/kafka/produce",
+					"raw": "http://localhost:9900/kafka/produce",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8800",
+					"port": "9900",
 					"path": [
 						"kafka",
 						"produce"
@@ -35,12 +35,12 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8800/kafka/consume/topic1",
+			"name": "http://localhost:8800/kafka/consume/topic",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8800/kafka/consume/topic1",
+					"raw": "http://localhost:8800/kafka/consume/topic",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -49,7 +49,7 @@
 					"path": [
 						"kafka",
 						"consume",
-						"topic1"
+						"topic"
 					]
 				}
 			},

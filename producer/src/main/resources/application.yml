@@ -3,4 +3,4 @@ kafka:
   consumerGroup: "myconsumergroup"
 
 server:
-  port: 8800
+  port: 9900

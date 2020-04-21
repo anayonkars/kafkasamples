@@ -1,39 +1,32 @@
-package com.example.kafkasample.web.controller;
+package com.example.kafkasample.producer.web.controller;
 
-import com.example.kafkasample.web.request.ProduceMessageRequest;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
+import com.example.kafkasample.producer.web.request.ProduceMessageRequest;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PreDestroy;
-import java.time.Duration;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-import static java.time.Duration.ofSeconds;
-import static java.util.Collections.singletonList;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping("/kafka")
-public class KafkaController {
+public class ProducerController {
     @Autowired
     @Qualifier("kafkaProducer")
     private KafkaProducer kafkaProducer;
 
-    @Autowired
-    @Qualifier("kafkaConsumer")
-    private KafkaConsumer kafkaConsumer;
-
     @PreDestroy
     public void cleanup() {
         kafkaProducer.close();
-        kafkaConsumer.close();
     }
 
     @PostMapping(value = "produce",
@@ -54,15 +47,4 @@ public class KafkaController {
         }
     }
 
-    @GetMapping(value = "consume/{topic}",
-            produces = {APPLICATION_JSON_VALUE})
-    public String consume(@PathVariable String topic) {
-        kafkaConsumer.subscribe(singletonList(topic));
-        ConsumerRecords<Long, String> consumerRecords = kafkaConsumer.poll(ofSeconds(1));
-        StringBuilder sb = new StringBuilder();
-        consumerRecords.forEach(record -> {
-            sb.append(record.toString());
-        });
-        return sb.toString();
-    }
 }
