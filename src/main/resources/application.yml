@@ -1,0 +1,4 @@
+kafka:
+  topic: mytopic
+  brokers: "localhost:9092"
+  consumerGroup: "myconsumergroup"
