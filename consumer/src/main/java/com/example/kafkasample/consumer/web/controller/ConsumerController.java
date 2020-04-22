@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PreDestroy;
 
+import static com.example.kafkasample.consumer.config.ConsumerConfiguration.KAFKA_CONSUMER;
 import static java.time.Duration.ofSeconds;
 import static java.util.Collections.singletonList;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -19,7 +20,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping("/kafka")
 public class ConsumerController {
     @Autowired
-    @Qualifier("kafkaConsumer")
+    @Qualifier(KAFKA_CONSUMER)
     private KafkaConsumer kafkaConsumer;
 
     @PreDestroy

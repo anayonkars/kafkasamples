@@ -15,13 +15,14 @@ import javax.annotation.PreDestroy;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+import static com.example.kafkasample.producer.config.ProducerConfiguration.KAFKA_PRODUCER;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping("/kafka")
 public class ProducerController {
     @Autowired
-    @Qualifier("kafkaProducer")
+    @Qualifier(KAFKA_PRODUCER)
     private KafkaProducer kafkaProducer;
 
     @PreDestroy

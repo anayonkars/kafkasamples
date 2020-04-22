@@ -16,8 +16,10 @@ import static org.apache.kafka.clients.producer.ProducerConfig.VALUE_SERIALIZER_
 @Configuration
 public class ProducerConfiguration {
 
+    public static final String KAFKA_PRODUCER = "kafkaProducer";
+
     @Bean
-    @Qualifier("kafkaProducer")
+    @Qualifier(KAFKA_PRODUCER)
     public KafkaProducer kafkaProducer(@Value("${kafka.brokers}") String kafka_brokers) {
         Properties producerProperties = new Properties();
         producerProperties.put(BOOTSTRAP_SERVERS_CONFIG, kafka_brokers);

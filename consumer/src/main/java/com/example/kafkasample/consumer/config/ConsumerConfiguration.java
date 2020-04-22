@@ -1,9 +1,7 @@
 package com.example.kafkasample.consumer.config;
 
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -12,8 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Properties;
 
 import static org.apache.kafka.clients.consumer.ConsumerConfig.*;
-import static org.apache.kafka.clients.producer.ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG;
-import static org.apache.kafka.clients.producer.ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG;
 
 @Configuration
 public class ConsumerConfiguration {
@@ -21,9 +17,10 @@ public class ConsumerConfiguration {
     public static final int ONE = 1;
     public static final String FALSE = "false";
     public static final String EARLIEST = "earliest";
+    public static final String KAFKA_CONSUMER = "kafkaConsumer";
 
     @Bean
-    @Qualifier("kafkaConsumer")
+    @Qualifier(KAFKA_CONSUMER)
     public KafkaConsumer kafkaConsumer(@Value("${kafka.brokers}") String kafka_brokers,
                                        @Value("${kafka.consumerGroup}") String consumerGroup) {
         Properties consumerProperties = new Properties();
