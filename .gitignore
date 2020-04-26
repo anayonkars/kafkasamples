@@ -2,3 +2,5 @@
 /target/
 /consumer/target/
 /producer/target/
+/kafkasamples.iml
+/producer/producer.iml
