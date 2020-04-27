@@ -1,8 +1,6 @@
 package com.example.kafkasample.consumer.web.controller;
 
 import com.example.kafkasample.consumer.message.MessageConsumer;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,11 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.PreDestroy;
-
-import static com.example.kafkasample.consumer.config.ConsumerConfiguration.KAFKA_CONSUMER;
-import static java.time.Duration.ofSeconds;
-import static java.util.Collections.singletonList;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController

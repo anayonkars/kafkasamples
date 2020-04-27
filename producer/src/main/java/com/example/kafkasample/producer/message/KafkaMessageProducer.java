@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PreDestroy;
-
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
