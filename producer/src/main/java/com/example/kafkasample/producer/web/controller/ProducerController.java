@@ -16,7 +16,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class ProducerController {
 
     @Autowired
-    @Qualifier("KafkaMessageProducer")
+    @Qualifier("kafkaMessageProducer")
     private MessageProducer kafkaMessageProducer;
 
     @PostMapping(value = "produce",

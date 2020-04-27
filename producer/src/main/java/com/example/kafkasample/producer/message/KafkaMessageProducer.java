@@ -15,7 +15,7 @@ import java.util.concurrent.Future;
 import static com.example.kafkasample.producer.config.ProducerConfiguration.KAFKA_PRODUCER;
 
 @Component
-@Qualifier("KafkaMessageProducer")
+@Qualifier("kafkaMessageProducer")
 public class KafkaMessageProducer implements MessageProducer {
 
     @Autowired

@@ -16,7 +16,7 @@ public class ConsumerConfiguration {
 
     public static final int ONE = 1;
     public static final String FALSE = "false";
-    public static final String EARLIEST = "earliest";
+    public static final String EARLIEST = "latest";
     public static final String KAFKA_CONSUMER = "kafkaConsumer";
 
     @Bean
